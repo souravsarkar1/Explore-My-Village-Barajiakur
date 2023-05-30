@@ -1,0 +1,124 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  background: rgb(80, 160, 169);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.nav-logo {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-gap: 40px;
+  list-style: none;
+  font-size: x-large;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s all;
+}
+
+.socilamedia {
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+  font-size: x-large;
+
+}
+
+.nav-link:hover {
+  color: rgb(170, 255, 0);
+}
+
+.nav-icon {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .navbar {
+    position: relative;
+    /* border-bottom: 1px solid blue; */
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 80px;
+    left: -100%;
+    transition: 0.5s all;
+  }
+
+  .nav-links.active {
+    background: rgb(80, 160, 169);
+    left: 0;
+  }
+
+  .nav-item {
+    padding: 10px 0;
+    border-top: 1px solid rgb(79, 15, 207);
+    /* border: 1px solid blue; */
+    background: rgb(80, 160, 169);;
+  }
+
+  .nav-icon {
+    display: flex;
+  }
+  .socilamedia{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    position: relative;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 80px;
+    left: -100%;
+    transition: 0.5s all;
+  }
+
+  .nav-links.active {
+    background: rgb(80, 160, 169);;
+    left: 0;
+  }
+
+  .nav-item {
+    padding: 10px 0;
+    border-top: 1px solid rgb(80, 160, 169);;
+    background: rgb(80, 160, 169);;
+  }
+
+  .nav-icon {
+    display: flex;
+  }
+  .socilamedia {
+    display: none;
+  }
+}

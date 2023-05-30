@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+  background-image: linear-gradient(to left, rgba(52, 100, 108, 0), rgb(47, 65, 167));
+}
+
+.routes{
+  margin: 20px;
+  padding: 20px;
+}
