@@ -1,4 +1,5 @@
 import './App.css';
+import LargeWithAppLinksAndSocial from './Component/Footer';
 import Navbar from './Component/Navbar';
 import AllRoutes from './Pages/AllRoutes';
 
@@ -9,6 +10,7 @@ function App() {
       <div className='routes'>
       <AllRoutes/>
       </div>
+      <LargeWithAppLinksAndSocial/>
     </div>
   );
 }

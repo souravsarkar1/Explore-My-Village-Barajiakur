@@ -1,10 +1,15 @@
 import React from 'react'
-import { Heading, Text } from '@chakra-ui/react'
 import styled from '@emotion/styled';
+import SimpleImageSlider from "react-simple-image-slider";
+import useResizeObserver from "use-resize-observer";
 import barajiakur from '../icons/barajiakur.png'
 import barajiakueSchool1 from '../icons/barajiakurschool2.jpeg'
-import barajiakueSchool2 from '../icons/barajiakurschool1.jpeg'
-
+import naturalBeauty2 from '../icons/nature2.jpeg'
+import naturalBeauty1 from '../icons/nature1.jpeg'
+import naturalBeauty3 from '../icons/nature3.jpeg'
+import naturalBeauty4 from '../icons/nature4.jpeg'
+import temple2 from '../icons/temple2.jpeg'
+import { Heading, Text } from '@chakra-ui/react';
 import {
   Table,
   Thead,
@@ -14,35 +19,39 @@ import {
   Td,
   TableContainer,
 } from '@chakra-ui/react'
+
 const Home = () => {
+  const { ref, width = 1, height = 1 } = useResizeObserver();
+  const images = [
+    { url: naturalBeauty1 },
+    { url: barajiakueSchool1 },
+    { url: naturalBeauty2 },
+    { url: naturalBeauty3 },
+    { url: naturalBeauty4 },
+    { url: temple2 },
+
+  ];
   return (
-    <DIV>
-
-      <div className='headings'>
-        
-        <div className='firstTwoImage'>
-          <div className='item1'>
-            <img src={barajiakueSchool1} alt="" />
-          </div>
-
-          <div className='item2'>
-            <img src={barajiakueSchool2} alt="" />
-          </div>
-          <div className='item3'>
-            <img src={barajiakueSchool1} alt="" />
-          </div>
-          <div className='item4'>
-            <img src={barajiakueSchool2} alt="" />
-          </div>
-        </div>
+    <Div>
+      <div ref={ref} className="card_imgBox" >
+        <SimpleImageSlider
+          width={width}
+          height={height}
+          images={images}
+          showBullets={true}
+          showNavs={true}
+          autoPlay={true}
+        />
       </div>
-      <Text fontSize={20}>
-      According to Census 2011 information the location code or village code of Barajiakur village is 321945. Barajiakur village is located in Santipur subdivision of Nadia district in West Bengal, India.
-      The total geographical area of village is 176.76 hectares. Barajiakur has a total population of 2,733 peoples, out of which male population is 1,387 while female population is 1,346. Literacy rate of barajiakur village is 62.90% out of which 69.07% males and 56.54% females are literate. There are about 634 houses in barajiakur village. Pincode of barajiakur village locality is 741404.
+      <div className='textdiv'>
+        <Text>
+          According to Census 2011 information the location code or village code of Barajiakur village is 321945. Barajiakur village is located in Santipur subdivision of Nadia district in West Bengal, India.
+          The total geographical area of village is 176.76 hectares. Barajiakur has a total population of 2,733 peoples, out of which male population is 1,387 while female population is 1,346. Literacy rate of barajiakur village is 62.90% out of which 69.07% males and 56.54% females are literate. There are about 634 houses in barajiakur village. Pincode of barajiakur village locality is 741404.
 
-      Santipur is nearest town to barajiakur for all major economic activities, which is approximately 10km away.
-    </Text>
-      <div className='links'>
+          Santipur is nearest town to barajiakur for all major economic activities, which is approximately 10km away.
+        </Text>
+      </div>
+      <div className='dataDiv'>
 
         <a href="https://www.google.com/maps/dir//Barajiakur+West+Bengal+741404/@23.288615,88.4718747,18z/data=!4m8!4m7!1m0!1m5!1m1!1s0x39f8e0ac37eb9beb:0x865e00f944cbc51e!2m2!1d88.4718747!2d23.288615" target='_blank' rel='noreferrer'>Click Here to Vist Google Map
           <img src={barajiakur} alt="barajiakur" style={{
@@ -129,34 +138,52 @@ const Home = () => {
           </Table>
         </TableContainer>
       </div>
-    </DIV>
+
+    </Div>
   )
 }
 
 export default Home
 
-const DIV = styled.div`
+const Div = styled.div`
 display: flex;
 flex-direction: column;
-width: 80%;
-gap: 30px;
-margin: auto;
-/* border: 1px solid red; */
-padding: 10px;
-.headings{
-  width: 50%;
+.textdiv{
+  padding: 20px;
   margin: auto;
+  width: 70%;
+  font-size: 20px;
 }
-.firstTwoImage{
-    width: 100%;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-   gap: 10px;
-   margin-top: 15px;
-}
-.links{
-  width: 40%;
+.card_imgBox {
   margin: auto;
+  width: 80%;
+  height: 600px;
+}
+.dataDiv{
+  margin: auto;
+  padding: 30px;
+  width: 75%;
+}
+@media (max-width: 768px) {
+  /* Adjust dimensions for smaller screens */
+  .card_imgBox {
+    margin: auto;
+    height: 300px;
+  }
+  .textdiv{
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Further adjust dimensions for mobile devices */
+  .card_imgBox {
+    margin: auto;
+    height: 200px;
+  }
+  .textdiv{
+    font-size: 12px;
+  }
 }
 
 `

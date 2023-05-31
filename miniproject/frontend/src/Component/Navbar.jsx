@@ -54,9 +54,9 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </Link>
-                <Link to={'/contact'}>
+                <Link to={'/cultrul'}>
                     <li className="nav-item">
-                        <Link to="/contact" className="nav-link" onClick={closeMenu}>
+                        <Link to="/cultrul" className="nav-link" onClick={closeMenu}>
                             Cultrul
                         </Link>
                     </li>
@@ -65,6 +65,13 @@ const Navbar = () => {
                     <li className="nav-item">
                         <Link to="/gallery" className="nav-link" onClick={closeMenu}>
                             Gallery
+                        </Link>
+                    </li>
+                </Link>
+                <Link to={'/contribute'}>
+                    <li className="nav-item">
+                        <Link to="/contribute" className="nav-link" onClick={closeMenu}>
+                            Contribute
                         </Link>
                     </li>
                 </Link>

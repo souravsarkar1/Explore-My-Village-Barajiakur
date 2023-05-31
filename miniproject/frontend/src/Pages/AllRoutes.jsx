@@ -5,6 +5,9 @@ import Login from './Login'
 import Signup from './Signup'
 import About from './About'
 import Gallery from './Gallery'
+import Cultrul from './Cultrul'
+import { Admin } from './Admin'
+
 
 const AllRoutes = () => {
   return (
@@ -15,6 +18,8 @@ const AllRoutes = () => {
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/gallery' element={<Gallery/>}/>  
+      <Route path='/cultrul' element={<Cultrul/>}/>
+      <Route path='/contribute' element={<Admin/>}/>
       </Routes>
     </div>
   )
