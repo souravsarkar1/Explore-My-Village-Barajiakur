@@ -11,8 +11,34 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import {Link} from 'react-router-dom'
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { loginUser } from '../Redux/AuthenticationReducer/action';
+const initialCase = {
+  email: '',
+  pass: ""
+}
 export default function Login() {
+  const [userData, setUserData] = useState(initialCase);
+  const dispatch = useDispatch();
+  const { email, pass } = userData;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setUserData((prevProduct) => {
+      return {
+        ...prevProduct,
+        [name]: name === 'age' ? +value : value,
+      };
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(userData);
+      dispatch(loginUser(userData));
+    //setUserData(initialCase);
+  };
   return (
     <Flex
       minH={'100vh'}
@@ -34,11 +60,11 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" name='email' valid={email} onChange={handleChange} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type="password" name='pass' value={pass} onChange={handleChange} />
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -53,13 +79,15 @@ export default function Login() {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }}
+                onClick={handleSubmit}
+              >
                 Sign in
               </Button>
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                No Account? <Link to={'/signup'}  color={'blue'}>Create A New Account</Link>
+                No Account? <Link to={'/signup'} color={'blue'}>Create A New Account</Link>
               </Text>
             </Stack>
           </Stack>
