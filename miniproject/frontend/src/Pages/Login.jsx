@@ -6,13 +6,12 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-
+import {Link} from 'react-router-dom'
 export default function Login() {
   return (
     <Flex
@@ -57,6 +56,11 @@ export default function Login() {
                 }}>
                 Sign in
               </Button>
+            </Stack>
+            <Stack pt={6}>
+              <Text align={'center'}>
+                No Account? <Link to={'/signup'}  color={'blue'}>Create A New Account</Link>
+              </Text>
             </Stack>
           </Stack>
         </Box>

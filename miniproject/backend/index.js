@@ -1,7 +1,8 @@
 const express = require('express');
 const { connection } = require('./db');
 const { dataRouter } = require('./routes/data.routes');
-var cors = require('cors')
+var cors = require('cors');
+const { userRouter } = require('./routes/user.routes');
 require('dotenv').config()
 
 const app = express();
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/data",dataRouter);
+app.use('/users' , userRouter);
 app.listen(process.env.port, async()=>{
     try {
         await connection;
