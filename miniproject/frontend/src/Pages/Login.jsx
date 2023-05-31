@@ -12,8 +12,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { loginUser } from '../Redux/AuthenticationReducer/action';
 const initialCase = {
   email: '',
@@ -22,6 +22,10 @@ const initialCase = {
 export default function Login() {
   const [userData, setUserData] = useState(initialCase);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { isError, isAuth, token } = useSelector(st => st.authReducer);
+  console.log({isAuth, isError, token});
   const { email, pass } = userData;
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,8 +40,10 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userData);
-      dispatch(loginUser(userData));
-    //setUserData(initialCase);
+    dispatch(loginUser(userData)).then((res) => {
+      navigate(location.state);
+    })
+    //  setUserData(initialCase);
   };
   return (
     <Flex

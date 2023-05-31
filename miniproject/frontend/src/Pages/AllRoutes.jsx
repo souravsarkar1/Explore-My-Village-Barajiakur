@@ -7,6 +7,7 @@ import About from './About'
 import Gallery from './Gallery'
 import Cultrul from './Cultrul'
 import { Admin } from './Admin'
+import PrivateReoute from '../Component/PrivateRoute'
 
 
 const AllRoutes = () => {
@@ -19,7 +20,9 @@ const AllRoutes = () => {
       <Route path='/about' element={<About/>}/>
       <Route path='/gallery' element={<Gallery/>}/>  
       <Route path='/cultrul' element={<Cultrul/>}/>
-      <Route path='/contribute' element={<Admin/>}/>
+      <Route path='/contribute' element={
+        <PrivateReoute><Admin/></PrivateReoute>
+      }/>
       </Routes>
     </div>
   )

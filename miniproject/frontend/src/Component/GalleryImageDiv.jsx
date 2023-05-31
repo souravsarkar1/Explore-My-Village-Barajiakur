@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled';
 import { Heading } from '@chakra-ui/react'
-const GalleryImageDiv = ({ img, ocation, loaction, clickBy }) => {
+const GalleryImageDiv = ({ img, ocation, location, clickBy }) => {
     return (
         <DIV>
         <img src={img} alt={ocation} />
         <br />
         <Heading as='h5' size='sm'>{ocation}</Heading>
-        <Heading as='h5' size='sm'>{loaction}</Heading>
+        <Heading as='h5' size='sm'>{location}</Heading>
         <Heading as='h5' size='sm'>{`Clicked By : ${clickBy}`}</Heading>
         </DIV>
     )

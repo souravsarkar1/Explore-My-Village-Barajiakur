@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCESS } from './actiontTypes'
+import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCESS, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCESS } from './actiontTypes'
 
 export const registerUser = (data) => (dispatch) => {
     dispatch({ type: REGISTER_REQUEST });
@@ -12,13 +12,13 @@ export const registerUser = (data) => (dispatch) => {
     })
 }
 export const loginUser = (data) => (dispatch) => {
-    dispatch({ type: REGISTER_REQUEST });
-    axios.post(`http://localhost:8080/users/login`, data).then((res) => {
+    dispatch({ type: LOGIN_REQUEST });
+    return axios.post(`http://localhost:8080/users/login`, data).then((res) => {
         console.log(res.data.token);
-        dispatch({ type: REGISTER_SUCESS , payload : res.data.token })
+        dispatch({ type: LOGIN_SUCESS, payload: res.data.token })
     }).catch((err) => {
         console.log(err);
-        dispatch({ type: REGISTER_FAIL })
+        dispatch({ type: LOGIN_FAIL })
     })
 }
 

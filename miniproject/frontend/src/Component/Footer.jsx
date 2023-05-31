@@ -79,7 +79,7 @@ export default function LargeWithAppLinksAndSocial() {
             <Link href={'#'}>Law Enforcement</Link>
           </Stack>
           <Stack>
-          <Heading>A Web Creatind By Sourav Sarkar</Heading>
+          <Heading>A Web Created By Sourav Sarkar</Heading>
           </Stack>
         </SimpleGrid>
       </Container>

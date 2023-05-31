@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { addData } from '../Redux/AdminCrudReducer/action';
+import { Heading } from '@chakra-ui/react';
+
 
 
 const initialState = {
@@ -12,6 +16,7 @@ const initialState = {
 
 export const Admin = () => {
     const [product, setProduct] = useState(initialState);
+    const dispatch = useDispatch();
     const { url, ocation, location, clickBy } = product;
 
     const handleChange = (e) => {
@@ -28,13 +33,16 @@ export const Admin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(product);
+      dispatch(addData(product));
         setProduct(initialState);
     };
 
     return (
         <DIV>
+      
+        <Heading>Add New Post</Heading>
+        <hr color='green' />
             <form onSubmit={handleSubmit}>
-                <h1>Add Products</h1>
                 <label>Image Url</label>
                 <input
                     type="text"
