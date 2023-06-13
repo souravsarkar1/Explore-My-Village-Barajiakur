@@ -4,12 +4,12 @@ import {
   Stack,
   SimpleGrid,
   Text,
-  Link,
   VisuallyHidden,
   chakra,
   useColorModeValue,
   Heading,
 } from '@chakra-ui/react';
+import {Link} from 'react-router-dom'
 import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
 
 // import AppStoreBadge from '@/components/AppStoreBadge';
@@ -59,24 +59,24 @@ export default function LargeWithAppLinksAndSocial() {
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align={'flex-start'}>
             <ListHeader>Village</ListHeader>
-            <Link href={'#'}>About Us</Link>
-            <Link href={'#'}>Blog</Link>
-            <Link href={'#'}>Contact Us</Link>
+            <Link to={'/about'}>About Us</Link>
+            <Link to={'/cultrul'}>Blog</Link>
+            <Link to={'/contract'}>Contact Us</Link>
           </Stack>
 
           <Stack align={'flex-start'}>
             <ListHeader>Support</ListHeader>
-            <Link href={'#'}>Help Center</Link>
-            <Link href={'#'}>Safety Center</Link>
-            <Link href={'#'}>Community Guidelines</Link>
+            <Link >Help Center</Link>
+            <Link to={'#'}>Safety Center</Link>
+            <Link to={'#'}>Community Guidelines</Link>
           </Stack>
 
           <Stack align={'flex-start'}>
             <ListHeader>Legal</ListHeader>
-            <Link href={'#'}>Cookies Policy</Link>
-            <Link href={'#'}>Privacy Policy</Link>
-            <Link href={'#'}>Terms of Service</Link>
-            <Link href={'#'}>Law Enforcement</Link>
+            <Link to={'#'}>Cookies Policy</Link>
+            <Link to={'#'}>Privacy Policy</Link>
+            <Link to={'#'}>Terms of Service</Link>
+            <Link to={'#'}>Law Enforcement</Link>
           </Stack>
           <Stack>
           <Heading>A Web Created By Sourav Sarkar</Heading>
