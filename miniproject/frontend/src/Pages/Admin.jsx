@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import {
+  Box,
+  Input,
+  FormControl,
+  FormLabel,
+  Button,
+  Heading,
+  Divider,
+} from '@chakra-ui/react';
 import { addData } from '../Redux/AdminCrudReducer/action';
-import { Heading } from '@chakra-ui/react';
-
-
 
 const initialState = {
   img: '',
   ocation: '',
   location: '',
-  clickBy: ''
+  clickBy: '',
 };
 
 export const Admin = () => {
   const [product, setProduct] = useState(initialState);
   const dispatch = useDispatch();
-  const { url, ocation, location, clickBy } = product;
+  const { img, ocation, location, clickBy } = product;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setProduct((prevProduct) => {
-      return {
-        ...prevProduct,
-        [name]: name === 'price' ? +value : value,
-      };
-    });
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: name === 'price' ? +value : value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -38,94 +40,67 @@ export const Admin = () => {
   };
 
   return (
-    <DIV>
+    <Box
+      maxWidth="600px"
+      mx="auto"
+      borderWidth="1px"
+      p={4}
+      borderRadius="md"
+      boxShadow="md"
+      bg="white"
+    >
+      <Heading as="h2" size="lg" mb={4} textAlign="center">
+        Add New Post
+      </Heading>
+      <Divider mb={4} />
 
-      <Heading>Add New Post</Heading>
-      <hr color='green' />
       <form onSubmit={handleSubmit}>
-        <label>Image Url</label>
-        <input
-          type="text"
-          name="img"
-          placeholder="Image Url"
-          value={url}
-          onChange={handleChange}
-        />
-        <label>Theme</label>
-        <input
-          type="text"
-          name="ocation"
-          placeholder="Mood of Image"
-          value={ocation}
-          onChange={handleChange}
-        />
-        <label>Location</label>
-        <input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={location}
-          onChange={handleChange}
-        />
-        <label>{`Contributor's Name`}</label>
-        <input
-          type="text"
-          name="clickBy"
-          placeholder="Contributors Name"
-          value={clickBy}
-          onChange={handleChange}
-        />
-        <button type="submit">Submit</button>
+        <FormControl>
+          <FormLabel>Image Url</FormLabel>
+          <Input
+            type="text"
+            name="img"
+            placeholder="Image Url"
+            value={img}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl mt={4}>
+          <FormLabel>Theme</FormLabel>
+          <Input
+            type="text"
+            name="ocation"
+            placeholder="Mood of Image"
+            value={ocation}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl mt={4}>
+          <FormLabel>Location</FormLabel>
+          <Input
+            type="text"
+            name="location"
+            placeholder="Location"
+            value={location}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <FormControl mt={4}>
+          <FormLabel>{`Contributor's Name`}</FormLabel>
+          <Input
+            type="text"
+            name="clickBy"
+            placeholder="Contributor's Name"
+            value={clickBy}
+            onChange={handleChange}
+          />
+        </FormControl>
+        <Button mt={6} colorScheme="teal" type="submit" w="100%">
+          Submit
+        </Button>
       </form>
-    </DIV>
+    </Box>
   );
 };
 
-const DIV = styled.div`
-  width: 600px;
-  margin: auto;
-  border: 1px solid black;
-  padding: 30px;
-  font-size: larger;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  input,
-  select {
-    height: 40px;
-    border-radius: 4px;
-  }
-
-  button {
-    width: 400px;
-    padding: 20px;
-    cursor: pointer;
-    margin: auto;
-  }
-
-  label {
-    align-items: left;
-  }
-  @media (max-width: 576px){
-    width: 300px;
-    form{
-        width: 250px;
-    }
-    button {
-    width: 100px;
-    padding: 20px;
-    cursor: pointer;
-    margin: auto;
-  }
-  input,
-  select {
-    height: 20px;
-  }
-  }
-`;
+export default Admin;

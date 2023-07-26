@@ -75,6 +75,13 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </Link>
+                <Link to={'/myprofile'}>
+                    <li className="nav-item">
+                        <Link to="/myprofile" className="nav-link" onClick={closeMenu}>
+                            Your Profile
+                        </Link>
+                    </li>
+                </Link>
             </ul>
             <ul className='socilamedia'>
                 <Link to={'/facebook'}> <FaFacebookSquare /></Link>

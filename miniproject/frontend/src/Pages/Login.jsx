@@ -11,15 +11,19 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { loginUser } from '../Redux/AuthenticationReducer/action';
+import Cookies from 'js-cookie';
 const initialCase = {
   email: '',
   pass: ""
 }
 export default function Login() {
+  useEffect(()=>{
+    Cookies.set("barajiakurToken","");
+  },[])
   const [userData, setUserData] = useState(initialCase);
   const dispatch = useDispatch();
   const location = useLocation();
