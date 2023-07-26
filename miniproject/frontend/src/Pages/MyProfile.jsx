@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteData, myData } from '../Redux/AdminCrudReducer/action';
 import styled from 'styled-components';
 import ProfileCard from '../Component/ProfileCard';
+import Laoder from '../Component/Laoder';
 
 const MyProfile = () => {
     const token = useSelector(st => st.authReducer.token);
@@ -18,10 +19,12 @@ const MyProfile = () => {
         dispatch(myData());
     }, [dispatch])
     const handleDelteData = (id) => {
-        dispatch(deleteData(id));
+        dispatch(deleteData(id)).then((res)=>{
+            dispatch(myData());
+        })
     }
     if (isLoading || isLoading2) {
-        return <Heading>Loading...</Heading>
+        return <Laoder/>
     }
     return (
         <MDiv>

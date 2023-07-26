@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Box,
   Input,
@@ -10,6 +10,8 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { addData } from '../Redux/AdminCrudReducer/action';
+import Loader from '../Component/Laoder';
+import { useNavigate } from 'react-router-dom';
 
 const initialState = {
   img: '',
@@ -22,7 +24,14 @@ export const Admin = () => {
   const [product, setProduct] = useState(initialState);
   const dispatch = useDispatch();
   const { img, ocation, location, clickBy } = product;
-
+  const [flag, setFlag] = useState(true);
+  const isLoading = useSelector(st=>st.adminCurdReducer.isLoading);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      setFlag(false);
+    }, 2000);
+  }, [])
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -35,10 +44,17 @@ export const Admin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(product);
-    dispatch(addData(product));
+    dispatch(addData(product)).then((res)=>{
+      setTimeout(() => {
+        return  <Loader />;
+      }, 2000);
+      navigate('/myprofile')
+    })
     setProduct(initialState);
   };
-
+  if (flag || isLoading) {
+   
+  }
   return (
     <Box
       maxWidth="600px"

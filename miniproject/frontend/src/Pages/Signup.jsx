@@ -12,11 +12,12 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { registerUser } from '../Redux/AuthenticationReducer/action';
+import Cookies from 'js-cookie';
 const initialCase = {
   name: '',
   email: '',
@@ -26,8 +27,12 @@ const initialCase = {
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [userData, setUserData] = useState(initialCase);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name, email, pass, age } = userData;
+  const passwordChecking = (pass) => {
+    return pass.length >= 8 && /[A-Z]/.test(pass) && /\d/.test(pass) && /[!@#$%^&*]/.test(pass);
+  };
   const { isLoading, isRegister, isError } = useSelector(st => st.authReducer);
   console.log(isLoading, isRegister, isError);
   const handleChange = (e) => {
@@ -43,7 +48,18 @@ export default function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userData);
-    dispatch(registerUser(userData));
+    if (!passwordChecking(pass)) {
+      alert('Password should contain at least eight characters, one uppercase character, one number, and one special character.');
+      return;
+    }
+    dispatch(registerUser(userData)).then((res)=>{
+      const mas = Cookies.get(`signupMessageBarajiakur`);
+      alert(mas);
+      setTimeout(() => {
+        navigate("/login");
+      }, 1050);
+      
+    })
     //setUserData(initialCase);
   };
   return (

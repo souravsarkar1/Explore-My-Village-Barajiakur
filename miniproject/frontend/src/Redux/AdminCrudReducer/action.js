@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 export const addData = (data) => (dispatch) => {
     const token = Cookies.get("barajiakurToken")
     dispatch({ type: ADD_DATA_REQUEST });
-    axios.post(`https://barajiakurbe.onrender.com/data/add`, data, {
+   return axios.post(`https://barajiakurbe.onrender.com/data/add`, data, {
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export const myData = () => (dispatch) => {
 export const deleteData = (id) => (dispatch) => {
     const token = Cookies.get("barajiakurToken")
     dispatch({ type: DELETE_MYDATA_REQUEST });
-    axios.delete(`https://barajiakurbe.onrender.com/data/delete/${id}`, {
+   return axios.delete(`https://barajiakurbe.onrender.com/data/delete/${id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const deleteData = (id) => (dispatch) => {
 export const updateData = (id, data) => (dispatch) => {
     const token = Cookies.get("barajiakurToken")
     dispatch({ type: UPDATE_MYDATA_REQUEST });
-    axios.put(`https://barajiakurbe.onrender.com/data/update/${id}`, data, {
+   return axios.put(`https://barajiakurbe.onrender.com/data/update/${id}`, data, {
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

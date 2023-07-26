@@ -16,20 +16,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { loginUser } from '../Redux/AuthenticationReducer/action';
 import Cookies from 'js-cookie';
+import Laoder from '../Component/Laoder';
 const initialCase = {
   email: '',
   pass: ""
 }
 export default function Login() {
-  useEffect(()=>{
-    Cookies.set("barajiakurToken","");
-  },[])
+  useEffect(() => {
+    Cookies.set("barajiakurToken", "");
+  }, [])
   const [userData, setUserData] = useState(initialCase);
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const { isError, isAuth, token } = useSelector(st => st.authReducer);
-  console.log({isAuth, isError, token});
+  const { isError, isAuth, token,isLoading } = useSelector(st => st.authReducer);
+  console.log({ isAuth, isError, token });
   const { email, pass } = userData;
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,10 +46,21 @@ export default function Login() {
     e.preventDefault();
     console.log(userData);
     dispatch(loginUser(userData)).then((res) => {
-      navigate(location.state);
+      const msg = Cookies.get("loginMessageBarajiakur");
+      alert(msg);
+      setTimeout(() => {
+        if (location.state) {
+          navigate(location.state);
+        } else {
+          navigate("/myprofile")
+        }
+      }, 1500);
     })
     //  setUserData(initialCase);
   };
+ if (isLoading) {
+    <Laoder/>
+ }
   return (
     <Flex
       minH={'100vh'}

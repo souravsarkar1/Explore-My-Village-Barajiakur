@@ -1,7 +1,17 @@
 import { Heading, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Loader from '../Component/Laoder';
 
 const About = () => {
+  const [flag,setFlag] = useState(true);
+  useEffect(()=>{
+    setTimeout(() => {
+      setFlag(false);
+    }, 2000);
+  },[])
+  if (flag) {
+    return <Loader/>
+  }
   return (
     <div>
       <Heading>Barajiakur</Heading>

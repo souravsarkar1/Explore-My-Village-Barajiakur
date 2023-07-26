@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { getData } from '../Redux/galleryReducer/action';
 import GalleryImageDiv from '../Component/GalleryImageDiv';
 import styled from '@emotion/styled';
-import { Heading } from '@chakra-ui/react';
+import Loader from '../Component/Laoder';
 
 const Gallery = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Gallery = () => {
     console.log(data);
     
     if (isLoading) {
-      return <Heading>Loading...</Heading>
+      return <Loader/>
     }
     
       

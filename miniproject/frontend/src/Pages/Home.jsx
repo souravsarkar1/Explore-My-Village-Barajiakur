@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled';
 import SimpleImageSlider from "react-simple-image-slider";
 import useResizeObserver from "use-resize-observer";
@@ -19,9 +19,16 @@ import {
   Td,
   TableContainer,
 } from '@chakra-ui/react'
+import Loader from '../Component/Laoder';
 
 const Home = () => {
   const { ref, width = 1, height = 1 } = useResizeObserver();
+  const [flag,setFlag] = useState(true);
+  useEffect(()=>{
+    setTimeout(() => {
+      setFlag(false);
+    }, 2000);
+  },[])
   const images = [
     { url: naturalBeauty1 },
     { url: barajiakueSchool1 },
@@ -31,6 +38,9 @@ const Home = () => {
     { url: temple2 },
 
   ];
+  if (flag) {
+    return <Loader/>
+  }
   return (
     <Div>
       <div ref={ref} className="card_imgBox" >
